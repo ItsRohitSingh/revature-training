@@ -3,6 +3,7 @@ package com.revature.training.model;
 public class Products {
 	private int productId;
 	private String productName;
+	private String productManufacturer;
 	private int quantity;
 	private int price;
 
@@ -10,12 +11,12 @@ public class Products {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Products(int productId, String productName, int quantity, int price) {
+	public Products(String productName, String productManufacturer, int quantity, int price) {
 		super();
-		this.productId = productId;
 		this.productName = productName;
 		this.quantity = quantity;
 		this.price = price;
+		this.productManufacturer = productManufacturer;
 	}
 
 	public int getProductId() {
@@ -50,10 +51,19 @@ public class Products {
 		this.price = price;
 	}
 
+	public String getProductManufacturer() {
+		return productManufacturer;
+	}
+
+	public void setProductManufacturer(String productManufacturer) {
+		this.productManufacturer = productManufacturer;
+	}
+
 	@Override
 	public String toString() {
 		return "Products [productId=" + productId + ", productName=" + productName + ", quantity=" + quantity
-				+ ", price=" + price + "]";
+				+ ", price=" + price + ", productManufacturer=" + productManufacturer + "]";
 	}
 
+	
 }

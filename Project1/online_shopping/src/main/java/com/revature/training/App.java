@@ -36,7 +36,8 @@ public class App {
 		case 1: LoginCustomer loginCustomer = new LoginCustomer();
 			loginCustomer.loginCustomer();
 			break;
-		case 2:
+		case 2: LoginEmployee loginEmployee = new LoginEmployee();
+			loginEmployee.loginEmployee();
 			break;
 		case 3:
 			break;
@@ -53,6 +54,6 @@ public class App {
 			log.info("Please enter valid option!");
 			
 		}
-		} while((option<1)||((option>5)&&(option!=9)));
+		} while((option!=9));
 	}
 }

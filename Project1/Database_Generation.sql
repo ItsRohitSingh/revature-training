@@ -35,6 +35,7 @@ CREATE TABLE IF NOT EXISTS `project1_onlineshopping`.`products` (
   `productname` VARCHAR(45) NOT NULL,
   `productquantity` INT NOT NULL,
   `productprice` INT NOT NULL,
+  `productmanufacturer` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`productid`))
 ENGINE = InnoDB;
 
