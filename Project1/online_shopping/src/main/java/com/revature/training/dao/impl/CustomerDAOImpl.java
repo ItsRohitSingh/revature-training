@@ -10,6 +10,7 @@ import java.util.List;
 import com.revature.training.dao.CustomerDAO;
 import com.revature.training.exception.BusinessException;
 import com.revature.training.model.Customer;
+import com.revature.training.model.Products;
 import com.revature.training.util.DBConnection;
 
 public class CustomerDAOImpl implements CustomerDAO {
@@ -32,6 +33,24 @@ public class CustomerDAOImpl implements CustomerDAO {
 			e.printStackTrace();
 		}
 		return add;
+	}
+	
+	@Override
+	public int deleteCustomer(String emailId) throws BusinessException {
+		int delete = 0;
+		try (Connection connection = DBConnection.getConnection()) {
+			String sql = "delete from customer where email = ?";
+			
+			PreparedStatement deleteStatement = connection.prepareStatement(sql);
+			deleteStatement.setString(1, emailId);
+			
+			delete = deleteStatement.executeUpdate();
+			
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return delete;
 	}
 
 	@Override
@@ -108,4 +127,114 @@ public class CustomerDAOImpl implements CustomerDAO {
 
 		return name;
 	}
+
+	@Override
+	public List<Customer> showCustomerByFirstName(String firstName) throws BusinessException {
+		List<Customer> customerList=new ArrayList<>();
+		try(Connection connection=DBConnection.getConnection()){
+			String sql="select customerid, firstname, lastname, email from customer where firstname=?";
+			PreparedStatement preparedStatement=connection.prepareStatement(sql);
+			preparedStatement.setString(1, firstName);
+			ResultSet resultSet=preparedStatement.executeQuery();
+			while(resultSet.next()) {
+				Customer customer=new Customer();
+				customer.setCustomerId(resultSet.getInt("customerid"));
+				customer.setFirstName(resultSet.getString("firstname"));
+				customer.setLastName(resultSet.getString("lastname"));
+				customer.setEmailId(resultSet.getString("email"));
+				
+				customerList.add(customer);
+			}
+			
+			if(customerList.size()==0) {
+				throw new BusinessException("No Customer with First Name : "+firstName);
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			throw new BusinessException("Internal error occured contact sysadmin");
+		}
+		return customerList;
+	}
+
+	@Override
+	public List<Customer> showCustomerByEmail(String emailId) throws BusinessException {
+		List<Customer> customerList=new ArrayList<>();
+		try(Connection connection=DBConnection.getConnection()){
+			String sql="select customerid, firstname, lastname, email from customer where email=?";
+			PreparedStatement preparedStatement=connection.prepareStatement(sql);
+			preparedStatement.setString(1, emailId);
+			ResultSet resultSet=preparedStatement.executeQuery();
+			while(resultSet.next()) {
+				Customer customer=new Customer();
+				customer.setCustomerId(resultSet.getInt("customerid"));
+				customer.setFirstName(resultSet.getString("firstname"));
+				customer.setLastName(resultSet.getString("lastname"));
+				customer.setEmailId(resultSet.getString("email"));
+				
+				customerList.add(customer);
+			}
+			
+			if(customerList.size()==0) {
+				throw new BusinessException("No Customer with Email-Id : "+emailId);
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			throw new BusinessException("Internal error occured contact sysadmin");
+		}
+		return customerList;
+	}
+
+	@Override
+	public List<Customer> showCustomerByOrder(int orderId) throws BusinessException {
+		List<Customer> customerList=new ArrayList<>();
+		try(Connection connection=DBConnection.getConnection()){
+			String sql="SELECT c.customerid,firstname,lastname,email FROM project1_onlineshopping.customer c, project1_onlineshopping.order o where c.customerid = o.ordercustomerid and o.orderid=?;";
+			PreparedStatement preparedStatement=connection.prepareStatement(sql);
+			preparedStatement.setInt(1, orderId);
+			ResultSet resultSet=preparedStatement.executeQuery();
+			while(resultSet.next()) {
+				Customer customer=new Customer();
+				customer.setCustomerId(resultSet.getInt("customerid"));
+				customer.setFirstName(resultSet.getString("firstname"));
+				customer.setLastName(resultSet.getString("lastname"));
+				customer.setEmailId(resultSet.getString("email"));
+				
+				customerList.add(customer);
+			}
+			
+			if(customerList.size()==0) {
+				throw new BusinessException("No Customer with Order-Id : "+orderId);
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			throw new BusinessException("Internal error occured contact sysadmin");
+		}
+		return customerList;
+	}
+
+	@Override
+	public List<Customer> showCustomerByLastName(String lastName) throws BusinessException {
+		List<Customer> customerList=new ArrayList<>();
+		try(Connection connection=DBConnection.getConnection()){
+			String sql="select customerid, firstname, lastname, email from customer where lastname=?";
+			PreparedStatement preparedStatement=connection.prepareStatement(sql);
+			preparedStatement.setString(1, lastName);
+			ResultSet resultSet=preparedStatement.executeQuery();
+			while(resultSet.next()) {
+				Customer customer=new Customer();
+				customer.setCustomerId(resultSet.getInt("customerid"));
+				customer.setFirstName(resultSet.getString("firstname"));
+				customer.setLastName(resultSet.getString("lastname"));
+				customer.setEmailId(resultSet.getString("email"));
+				
+				customerList.add(customer);
+			}
+			
+			if(customerList.size()==0) {
+				throw new BusinessException("No Customer with Last Name : "+lastName);
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			throw new BusinessException("Internal error occured contact sysadmin");
+		}
+		return customerList;
+	}
+
+	
 }

@@ -1,19 +1,26 @@
 package com.revature.training;
 
+import java.util.List;
 import java.util.Scanner;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.chainsaw.Main;
 
 import com.revature.training.exception.BusinessException;
+import com.revature.training.model.Cart;
+import com.revature.training.model.Order;
 import com.revature.training.service.CustomerService;
+import com.revature.training.service.OrderService;
 import com.revature.training.service.impl.CustomerServiceImpl;
+import com.revature.training.service.impl.OrderServiceImpl;
 
 public class LoginCustomer {
-	private static Logger log = Logger.getLogger(Main.class);
+	private static Logger log = Logger.getLogger(LoginCustomer.class);
+	Scanner scanner = new Scanner(System.in);
 
 	public void loginCustomer() {
-		Scanner scanner = new Scanner(System.in);
+		log.info("\nW E L C O M E   T O   L O G I N   C U S T O M E R   S E C T I O N !");
+		log.info("===================================================================\n");
 		log.info("Enter your Email Id : ");
 		String emailId = scanner.nextLine();
 		log.info("Enter your Password : ");
@@ -24,7 +31,7 @@ public class LoginCustomer {
 			boolean result = customerService.checkLogin(emailId, password);
 
 			if (result) {
-				log.info("L O G - I N   S U C C E S S F U L L !");
+				log.info("\nL O G - I N   S U C C E S S F U L L !");
 				log.info("-------------------------------------\n");
 				int option = 0;
 				do {
@@ -32,7 +39,7 @@ public class LoginCustomer {
 					String firstName = customerService.fetchCustomerFirstName(customerId);
 					firstName = firstName.toUpperCase().replaceAll(".(?!$)", "$0 ");
 					log.info("W E L C O M E   " + firstName + " !");
-					log.info("================================================");
+					log.info("==============================\n");
 
 					log.info("1. Search Products");
 					log.info("2. View Orders");
@@ -48,19 +55,56 @@ public class LoginCustomer {
 					}
 
 					switch (option) {
-					case 1: SearchProducts searchProducts = new SearchProducts();
-						searchProducts.searchProducts();
+					case 1: 
+						SearchProducts searchProducts = new SearchProducts();
+						searchProducts.searchProducts(customerId);
 						break;
 					case 2:
+						OrderService orderService = new OrderServiceImpl();
+						List <Order> orderList = orderService.viewOrderByCustomer(customerId);
+						if(orderList != null && orderList.size() > 0) {
+							log.info("\nW E L C O M E   T O   Y O U R   O R D E R S!");
+							log.info("==============================================\n");
+							for(Order order : orderList) {
+								log.info(order);
+							}
+							log.info("\nWould you like to change order status to Delivered? (Y|N) : ");
+							char order = scanner.nextLine().charAt(0);
+							order = Character.toUpperCase(order);
+							if (order == 'Y') {
+								log.info("Please enter Order Id to mark as delivered : ");
+								int orderId = Integer.parseInt(scanner.nextLine());
+								
+								int checkUpdate = orderService.updateOrderStatus(orderId, "Delivered");
+								
+								if(checkUpdate == 1) {
+									log.info("\nOrder Id "+orderId+" has been marked as DELIVERED successfully.");
+								}
+								else {
+									log.warn("\nInvalid Order Id "+orderId+". Please enter valid Order Id and try again.");
+								}
+							} else if (order == 'N') {
+								log.info("\nG O I N G   B A C K   T O   P R E V I O U S   M E N U !");
+								log.info("-------------------------------------------------------\n");
+							} else {
+								log.warn("Please input correct value (Y|N).");
+							}
+						}
+						else {
+							log.info("You have not placed any order yet.");
+						}
 						break;
 					case 3: App app = new App();
 						app.startApp();
 						break;
 					case 9:
-						log.info("T H A N K   Y O U   F O R   V I S I T I N G   O U R   S T O R E !");
+						log.info("\nT H A N K   Y O U   F O R   V I S I T I N G   O U R   S T O R E !");
+						log.info("-----------------------------------------------------------------\n");
 						scanner.close();
 						System.exit(0);
 						break;
+					default:
+						log.info("Please enter a valid option!");
 					}
 				} while (option != 9);
 			}

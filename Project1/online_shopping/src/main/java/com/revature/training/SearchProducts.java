@@ -7,97 +7,164 @@ import org.apache.log4j.Logger;
 import org.apache.log4j.chainsaw.Main;
 
 import com.revature.training.exception.BusinessException;
+import com.revature.training.model.Cart;
 import com.revature.training.model.Products;
+import com.revature.training.service.CartService;
+import com.revature.training.service.OrderService;
 import com.revature.training.service.ProductService;
+import com.revature.training.service.impl.CartServiceImpl;
+import com.revature.training.service.impl.OrderServiceImpl;
 import com.revature.training.service.impl.ProductServiceImpl;
 
 public class SearchProducts {
 
-	private static Logger log = Logger.getLogger(Main.class);
+	private static Logger log = Logger.getLogger(SearchProducts.class);
 	Scanner scanner = new Scanner(System.in);
-	
-	public void searchProducts() {
-		int option=0;
+
+	public void searchProducts(int customerId) {
+		int option = 0;
 		do {
-		log.info("1. By Name");
-		log.info("2. By Manufacturer Name");
-		log.info("3. View Cart");
-		log.info("4. Previous Menu");
-		log.info("5. Logout");
-		log.info("9. Exit");
-		
-		try {
-			option = Integer.parseInt(scanner.nextLine());
-		} catch(NumberFormatException e) {
-			log.warn(e.getMessage());
-			continue;
-		}
-		
-		switch(option) {
-		case 1: 
-			log.info("Enter product name to get details");
-			String name = scanner.nextLine();
-			try {
-				ProductService productService = new ProductServiceImpl();
+			log.info("\nW E L C O M E   T O   S E A R C H   P R O D U C T S   S E C T I O N !");
+			log.info("=======================================================================\n");
+			log.info("1. By Name");
+			log.info("2. By Manufacturer Name");
+			log.info("3. View Cart");
+			log.info("4. Previous Menu");
+			log.info("5. Logout");
+			log.info("9. Exit");
 
-				List<Products> productList = productService.showProductByName(name);
-				
-				if (productList != null && productList.size() > 0) {
-					log.info("Total there are " + productList.size()
-							+ " number of players playing for the team " + name.toUpperCase()
-							+ " printing the players");
-					log.info("L I S T I N G   P R O D U C T S   B Y   N A M E");
-					log.info("===============================================\n");
-					for (Products product : productList) {
-						log.info(product);
-					}
-				}
-			} catch (BusinessException e) {
-				log.warn(e.getMessage());
-			}
-			break;
-		case 2:
-			log.info("Enter product name to get details");
-			String manufacturer = scanner.nextLine();
 			try {
-				ProductService productService = new ProductServiceImpl();
-
-				List<Products> productList = productService.showProductByManufacturer(manufacturer);
-				
-				if (productList != null && productList.size() > 0) {
-					log.info("Total there are " + productList.size()
-							+ " number of players playing for the team " + manufacturer.toUpperCase()
-							+ " printing the players");
-					log.info("L I S T I N G   P R O D U C T S   B Y   M A N U F A C T U R E R");
-					log.info("===============================================================\n");
-					for (Products product : productList) {
-						log.info(product);
-					}
-				}
-			} catch (BusinessException e) {
+				option = Integer.parseInt(scanner.nextLine());
+			} catch (NumberFormatException e) {
 				log.warn(e.getMessage());
+				continue;
 			}
-			break;
-		case 3:
-			break;
-		case 4:
-			
-			break;
-		case 5:
-			App app = new App();
-			app.startApp();
-			break;
-		case 9:
-			log.info("T H A N K   Y O U   F O R   V I S I T I N G   O U R   S T O R E !");
-			scanner.close();
-			System.exit(0);
-			break;
-		}
-		
-		if(option == 4) {
-			break;
-		}
-		
-		} while(option!=9);
+
+			switch (option) {
+			case 1:
+				log.info("Enter product name to get details");
+				String name = scanner.nextLine();
+				try {
+					ProductService productService = new ProductServiceImpl();
+
+					List<Products> productList = productService.showProductByName(name);
+
+					if (productList != null && productList.size() > 0) {
+						log.info("L I S T I N G   P R O D U C T S   B Y   N A M E");
+						log.info("===============================================\n");
+						for (Products product : productList) {
+							log.info(product);
+						}
+						log.info("\n");
+
+						log.info("Do you wish to add a product to cart (Y|N) : ");
+						char order = scanner.nextLine().charAt(0);
+						order = Character.toUpperCase(order);
+						if (order == 'Y') {
+							AddToCart addToCart = new AddToCart();
+							addToCart.addToCart(customerId);
+						} else if (order == 'N') {
+							log.info("\nG O I N G   B A C K   T O   P R E V I O U S   M E N U !");
+							log.info("-------------------------------------------------------\n");
+						} else {
+							log.warn("Please input correct value (Y|N).");
+						}
+					}
+				} catch (BusinessException e) {
+					log.warn(e.getMessage());
+				}
+				break;
+			case 2:
+				log.info("Enter product name to get details");
+				String manufacturer = scanner.nextLine();
+				try {
+					ProductService productService = new ProductServiceImpl();
+
+					List<Products> productList = productService.showProductByManufacturer(manufacturer);
+
+					if (productList != null && productList.size() > 0) {
+						log.info("L I S T I N G   P R O D U C T S   B Y   M A N U F A C T U R E R");
+						log.info("===============================================================\n");
+						for (Products product : productList) {
+							log.info(product);
+						}
+						log.info("\n");
+
+						log.info("Do you wish to add a product to cart (Y|N) : ");
+						char order = scanner.nextLine().charAt(0);
+						order = Character.toUpperCase(order);
+						if (order == 'Y') {
+							AddToCart addToCart = new AddToCart();
+							addToCart.addToCart(customerId);
+						} else if (order == 'N') {
+							log.info("\nG O I N G   B A C K   T O   P R E V I O U S   M E N U !");
+							log.info("-------------------------------------------------------\n");
+						} else {
+							log.warn("Please input correct value (Y|N).");
+						}
+					}
+				} catch (BusinessException e) {
+					log.warn(e.getMessage());
+				}
+				break;
+			case 3:
+				CartService cartService = new CartServiceImpl();
+				OrderService orderService = new OrderServiceImpl();
+				try {
+					List<Cart> cartList = cartService.viewCartByCustomer(customerId);
+					if(cartList != null && cartList.size() > 0) {
+						log.info("\nW E L C O M E   T O   Y O U R   C A R T !");
+						log.info("=========================================\n");
+						for(Cart cart : cartList) {
+							log.info(cart);
+							int productId = cart.getCartProductId();
+							int quantityPurchased = cart.getQuantity();
+							int checkUpdate = orderService.updateQuantityProduct(productId, quantityPurchased);
+						}
+						log.info("\nDo you want to place order for all items? (Y|N) : ");
+						char order = scanner.nextLine().charAt(0);
+						order = Character.toUpperCase(order);
+						if (order == 'Y') {
+							
+							int totalAdd = orderService.addOrder(customerId);
+							int checkDelete = orderService.deleteAllFromCart(customerId);
+							
+							log.info("Order has been placed for "+totalAdd+" products. Check 'View Orders' section for more details.");
+						} else if (order == 'N') {
+							log.info("\nG O I N G   B A C K   T O   P R E V I O U S   M E N U !");
+							log.info("-------------------------------------------------------\n");
+						} else {
+							log.warn("Please input correct value (Y|N).");
+						}
+					}
+					else {
+						log.info("Your Cart is empty. Please add products to view them in your Cart.");
+					}
+				} catch (BusinessException e) {
+					// TODO Auto-generated catch block
+					log.warn(e.getMessage());
+				}
+				break;
+			case 4:
+				// NO Command here (Previous Menu)
+				break;
+			case 5:
+				App app = new App();
+				app.startApp();
+				break;
+			case 9:
+				log.info("\nT H A N K   Y O U   F O R   V I S I T I N G   O U R   S T O R E !");
+				log.info("-----------------------------------------------------------------\n");
+				scanner.close();
+				System.exit(0);
+				break;
+			default:
+				log.info("Please enter a valid option!");
+			}
+
+			if (option == 4) {
+				break;
+			}
+		} while (option != 9);
 	}
 }

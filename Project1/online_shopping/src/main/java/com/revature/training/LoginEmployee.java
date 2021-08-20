@@ -3,7 +3,6 @@ package com.revature.training;
 import java.util.Scanner;
 
 import org.apache.log4j.Logger;
-import org.apache.log4j.chainsaw.Main;
 
 import com.revature.training.exception.BusinessException;
 import com.revature.training.model.Products;
@@ -13,10 +12,12 @@ import com.revature.training.service.impl.CustomerServiceImpl;
 import com.revature.training.service.impl.ProductServiceImpl;
 
 public class LoginEmployee {
-	private static Logger log = Logger.getLogger(Main.class);
+	private static Logger log = Logger.getLogger(LoginEmployee.class);
+	Scanner scanner = new Scanner(System.in);
 
 	public void loginEmployee() {
-		Scanner scanner = new Scanner(System.in);
+		log.info("\nW E L C O M E   T O   L O G I N   E M P L O Y E E   S E C T I O N !");
+		log.info("===================================================================\n");
 		log.info("Enter your Email Id : ");
 		String emailId = scanner.nextLine();
 		log.info("Enter your Password : ");
@@ -65,21 +66,31 @@ public class LoginEmployee {
 					}
 					break;
 				case 2:
+					ViewOrders viewOrders = new ViewOrders();
+					viewOrders.viewOrders();
 					break;
 				case 3:
+					SearchCustomers searchCustomers = new SearchCustomers();
+					searchCustomers.searchCustomers();
 					break;
 				case 4:
 					App app = new App();
 					app.startApp();
 					break;
 				case 9:
-					log.info("T H A N K   Y O U   F O R   V I S I T I N G   O U R   S T O R E !");
+					log.info("\nT H A N K   Y O U   F O R   V I S I T I N G   O U R   S T O R E !");
+					log.info("-----------------------------------------------------------------\n");
 					scanner.close();
 					System.exit(0);
 					break;
+				default:
+					log.info("Please enter a valid option!");
 				}
 				
 			} while (option != 9);
+		}
+		else {
+			log.warn("Incorrect EmailId or Password! Please try again.");
 		}
 
 	}

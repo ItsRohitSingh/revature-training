@@ -18,9 +18,9 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public int removeProduct(int productId) throws BusinessException {
-		// TODO Auto-generated method stub
-		return 0;
+	public int removeProduct(String productName) throws BusinessException {
+		int checkRemoveProduct = productDAO.removeProduct(productName);
+		return checkRemoveProduct;
 	}
 
 	@Override

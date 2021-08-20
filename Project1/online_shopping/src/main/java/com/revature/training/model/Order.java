@@ -83,9 +83,9 @@ public class Order {
 
 	@Override
 	public String toString() {
-		return "Order [orderId=" + orderId + ", orderCustomerId=" + orderCustomerId + ", orderProductId="
-				+ orderProductId + ", orderProductName=" + orderProductName + ", orderQuantity=" + orderQuantity
-				+ ", orderPrice=" + orderPrice + ", orderStatus=" + orderStatus + "]";
+		return "Order Id : " + orderId + "\tProduct Id : "
+				+ orderProductId + "\tProduct Name : " + orderProductName + "\tQuantity : " + orderQuantity
+				+ "\tPrice : " + orderPrice + "\tStatus=" + orderStatus;
 	}
 
 }

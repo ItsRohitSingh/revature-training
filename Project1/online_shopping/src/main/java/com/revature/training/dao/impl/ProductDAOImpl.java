@@ -38,9 +38,22 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	@Override
-	public int removeProduct(int productId) throws BusinessException {
-		// TODO Auto-generated method stub
-		return 0;
+	public int removeProduct(String productName) throws BusinessException {
+		int remove = 0;
+
+		try (Connection connection = DBConnection.getConnection()) {
+			String sql = "delete from products where productName=?";
+
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, productName);
+			
+			remove = preparedStatement.executeUpdate();
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			throw new BusinessException("Internal error occured contact sysadmin");
+		}
+
+		return remove;
 	}
 
 	@Override
