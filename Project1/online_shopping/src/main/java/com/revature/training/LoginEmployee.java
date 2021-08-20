@@ -24,7 +24,7 @@ public class LoginEmployee {
 		String password = scanner.nextLine();
 
 		// H A R D C O D E D   C R E D E N T I A L S   F O R   E M P L O Y E E
-		if (emailId.equals("rohit@onlineshopping.com") && password.equals("rohit")) { 
+		if (emailId.equals("rohit@creatingcommerce.com") && password.equals("rohit")) { 
 			log.info("L O G - I N   S U C C E S S F U L L !");
 			log.info("-------------------------------------\n");
 			int option = 0;
