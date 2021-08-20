@@ -13,7 +13,7 @@ public class App {
 		int option = 0;
 		
 		do {
-		log.info("\n\n# # # W E L C O M E   T O   T H E   O N L I N E   S H O P P I N G   A P P # # #");
+		log.info("\n\n# # # W E L C O M E   T O   T H E   C R E A T I N G   C O M M E R C E   A P P # # #");
 		log.info("===============================================================================\n");
 		
 		log.info("1. Login as Customer");
