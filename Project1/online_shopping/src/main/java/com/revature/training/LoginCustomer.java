@@ -28,9 +28,9 @@ public class LoginCustomer {
 
 		CustomerService customerService = new CustomerServiceImpl();
 		try {
-			boolean result = customerService.checkLogin(emailId, password);
+			boolean result = customerService.checkLogin(emailId, password); // C H E C K   L O G I N
 
-			if (result) {
+			if (result) { // S U C C E S S F U L L   L O G I N
 				log.info("\nL O G - I N   S U C C E S S F U L L !");
 				log.info("-------------------------------------\n");
 				int option = 0;
@@ -55,23 +55,23 @@ public class LoginCustomer {
 					}
 
 					switch (option) {
-					case 1: 
+					case 1: // S E A R C H   P R O D U C T S
 						SearchProducts searchProducts = new SearchProducts();
 						searchProducts.searchProducts(customerId);
 						break;
-					case 2:
+					case 2: // V I E W   O R D E R S   A N D   M A R K   A S   D E L I V E R E D
 						OrderService orderService = new OrderServiceImpl();
 						List <Order> orderList = orderService.viewOrderByCustomer(customerId);
 						if(orderList != null && orderList.size() > 0) {
 							log.info("\nW E L C O M E   T O   Y O U R   O R D E R S!");
 							log.info("==============================================\n");
 							for(Order order : orderList) {
-								log.info(order);
+								log.info(order); // L I S T I N G   A L L   O R D E R S   B Y   L O G G E D - I N   C U S T O M E R
 							}
 							log.info("\nWould you like to change order status to Delivered? (Y|N) : ");
 							char order = scanner.nextLine().charAt(0);
 							order = Character.toUpperCase(order);
-							if (order == 'Y') {
+							if (order == 'Y') { // M A R K I N G   O R D E R   A S   D E L I V E R E D
 								log.info("Please enter Order Id to mark as delivered : ");
 								int orderId = Integer.parseInt(scanner.nextLine());
 								
@@ -94,10 +94,11 @@ public class LoginCustomer {
 							log.info("You have not placed any order yet.");
 						}
 						break;
-					case 3: App app = new App();
+					case 3: // L O G - O U T
+						App app = new App();
 						app.startApp();
 						break;
-					case 9:
+					case 9: // E X I T   T H E   A P P
 						log.info("\nT H A N K   Y O U   F O R   V I S I T I N G   O U R   S T O R E !");
 						log.info("-----------------------------------------------------------------\n");
 						scanner.close();

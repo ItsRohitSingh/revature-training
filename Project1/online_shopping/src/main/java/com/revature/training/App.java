@@ -33,27 +33,27 @@ public class App {
 		}
 		
 		switch(option) {
-		case 1: 
+		case 1: // L O G I N   A S   A   C U S T O M E R
 			LoginCustomer loginCustomer = new LoginCustomer();
 			loginCustomer.loginCustomer();
 			break;
-		case 2: 
+		case 2: // L O G I N   A S   A N   E M P L O Y E E
 			LoginEmployee loginEmployee = new LoginEmployee();
 			loginEmployee.loginEmployee();
 			break;
-		case 3:
+		case 3: // R E G I S T E R   A S   A   C U S T O M E R
 			RegisterCustomer registerCustomer = new RegisterCustomer();
 			registerCustomer.registerCustomer();
 			break;
-		case 4:
+		case 4: // A B O U T   T H I S   A P P
 			AboutThisApp aboutThisApp = new AboutThisApp();
 			aboutThisApp.aboutApp();
 			break;
-		case 5:
+		case 5: // A B O U T   T H E   D E V E L O P E R
 			AboutTheDev aboutTheDev = new AboutTheDev();
 			aboutTheDev.aboutDev();
 			break;
-		case 9:
+		case 9: // E X I T   T H E   A P P
 			log.info("\nT H A N K   Y O U   F O R   V I S I T I N G   O U R   S T O R E !");
 			log.info("-----------------------------------------------------------------\n");
 			scanner.close();

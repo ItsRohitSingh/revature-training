@@ -40,7 +40,7 @@ public class SearchCustomers {
 			}
 
 			switch (option) {
-			case 1:
+			case 1: // S E A R C H   C U S T O M E R   B Y   F I R S T   N A M E
 				log.info("Enter first name to get details : ");
 				String firstName = scanner.nextLine();
 				try {
@@ -60,7 +60,7 @@ public class SearchCustomers {
 					log.warn(e.getMessage());
 				}
 				break;
-			case 2:
+			case 2: // S E A R C H   C U S T O M E R   B Y   L A S T   N A M E
 				log.info("Enter last name to get details : ");
 				String lastName = scanner.nextLine();
 				try {
@@ -80,7 +80,7 @@ public class SearchCustomers {
 					log.warn(e.getMessage());
 				}
 				break;
-			case 3:
+			case 3: // S E A R C H   C U S T O M E R   B Y   E M A I L
 				log.info("Enter Email-Id to get details : ");
 				String emailId = scanner.nextLine();
 				try {
@@ -100,7 +100,7 @@ public class SearchCustomers {
 					log.warn(e.getMessage());
 				}
 				break;
-			case 4:
+			case 4: // S E A R C H   C U S T O M E R   B Y   O R D E R - I D
 				log.info("Enter Order-Id to get details : ");
 				int orderId = Integer.parseInt(scanner.nextLine());
 				try {
@@ -120,14 +120,14 @@ public class SearchCustomers {
 					log.warn(e.getMessage());
 				}
 				break;
-			case 5:
-				// NO Command here (Previous Menu)
+			case 5: // G O   B A C K   T O   T H E   P R E V I O U S   M E N U
+
 				break;
 			case 6:
 				App app = new App();
 				app.startApp();
 				break;
-			case 9:
+			case 9: // E X I T   T H E   A P P
 				log.info("\nT H A N K   Y O U   F O R   V I S I T I N G   O U R   S T O R E !");
 				log.info("-----------------------------------------------------------------\n");
 				scanner.close();

@@ -41,7 +41,7 @@ public class SearchProducts {
 			}
 
 			switch (option) {
-			case 1:
+			case 1: // S E A R C H   P R O D U C T S   B Y   P R O D U C T   N A M E
 				log.info("Enter product name to get details");
 				String name = scanner.nextLine();
 				try {
@@ -53,7 +53,7 @@ public class SearchProducts {
 						log.info("L I S T I N G   P R O D U C T S   B Y   N A M E");
 						log.info("===============================================\n");
 						for (Products product : productList) {
-							log.info(product);
+							log.info(product); // L I S T I N G   P R O D U C T S   B Y   N A M E
 						}
 						log.info("\n");
 
@@ -74,7 +74,7 @@ public class SearchProducts {
 					log.warn(e.getMessage());
 				}
 				break;
-			case 2:
+			case 2: // S E A R C H   P R O D U C T S   B Y   P R O D U C T   M A N U F A C T U R E R   N A M E
 				log.info("Enter product name to get details");
 				String manufacturer = scanner.nextLine();
 				try {
@@ -86,7 +86,7 @@ public class SearchProducts {
 						log.info("L I S T I N G   P R O D U C T S   B Y   M A N U F A C T U R E R");
 						log.info("===============================================================\n");
 						for (Products product : productList) {
-							log.info(product);
+							log.info(product); // L I S T I N G   P R O D U C T S   B Y   M A N U F A C T U R E R   N A M E
 						}
 						log.info("\n");
 
@@ -107,7 +107,7 @@ public class SearchProducts {
 					log.warn(e.getMessage());
 				}
 				break;
-			case 3:
+			case 3: // V I E W   C A R T   A N D   P L A C E   O R D E R
 				CartService cartService = new CartServiceImpl();
 				OrderService orderService = new OrderServiceImpl();
 				try {
@@ -116,7 +116,7 @@ public class SearchProducts {
 						log.info("\nW E L C O M E   T O   Y O U R   C A R T !");
 						log.info("=========================================\n");
 						for(Cart cart : cartList) {
-							log.info(cart);
+							log.info(cart); // P R I N T I N G   T H E   C A R T
 							int productId = cart.getCartProductId();
 							int quantityPurchased = cart.getQuantity();
 							int checkUpdate = orderService.updateQuantityProduct(productId, quantityPurchased);
@@ -124,7 +124,7 @@ public class SearchProducts {
 						log.info("\nDo you want to place order for all items? (Y|N) : ");
 						char order = scanner.nextLine().charAt(0);
 						order = Character.toUpperCase(order);
-						if (order == 'Y') {
+						if (order == 'Y') { // P L A C E   T H E   O R D E R
 							
 							int totalAdd = orderService.addOrder(customerId);
 							int checkDelete = orderService.deleteAllFromCart(customerId);
@@ -145,14 +145,14 @@ public class SearchProducts {
 					log.warn(e.getMessage());
 				}
 				break;
-			case 4:
-				// NO Command here (Previous Menu)
+			case 4: // G O   B A C K   T O   T H E   P R E V I O U S   M E N U
+				
 				break;
-			case 5:
+			case 5: // L O G O U T
 				App app = new App();
 				app.startApp();
 				break;
-			case 9:
+			case 9: // E X I T   T H E   A P P
 				log.info("\nT H A N K   Y O U   F O R   V I S I T I N G   O U R   S T O R E !");
 				log.info("-----------------------------------------------------------------\n");
 				scanner.close();
@@ -162,7 +162,7 @@ public class SearchProducts {
 				log.info("Please enter a valid option!");
 			}
 
-			if (option == 4) {
+			if (option == 4) { // I F   G O I N G   B A C K   T O   P R E V I O U S   M E N U
 				break;
 			}
 		} while (option != 9);

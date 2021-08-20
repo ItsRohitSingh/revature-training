@@ -29,7 +29,7 @@ public class ViewOrders {
 			option = Integer.parseInt(scanner.nextLine());
 
 			switch (option) {
-			case 1:
+			case 1: // V I E W   A L L   O R D E R S
 				OrderService orderService1 = new OrderServiceImpl();
 				List<Order> orderList1;
 				try {
@@ -72,7 +72,7 @@ public class ViewOrders {
 					e.printStackTrace();
 				}
 				break;
-			case 2:
+			case 2: // V I E W   O R D E R S   B Y   C U S T O M E R - I D
 				log.info("Please enter Customer Id to view Orders : ");
 				int customerId = Integer.parseInt(scanner.nextLine());
 				OrderService orderService = new OrderServiceImpl();
@@ -117,14 +117,14 @@ public class ViewOrders {
 					e.printStackTrace();
 				}
 				break;
-			case 3:
-				// NOTHING HERE
+			case 3: // G O   B A C K   T O   T H E   P R E V I O U S   M E N U
+
 				break;
-			case 4:
+			case 4: // L O G - O U T
 				App app = new App();
 				app.startApp();
 				break;
-			case 9:
+			case 9: // E X I T   T H E   A P P
 				log.info("\nT H A N K   Y O U   F O R   V I S I T I N G   O U R   S T O R E !");
 				log.info("-----------------------------------------------------------------\n");
 				scanner.close();

@@ -23,7 +23,8 @@ public class LoginEmployee {
 		log.info("Enter your Password : ");
 		String password = scanner.nextLine();
 
-		if (emailId.equals("rohit@onlineshopping.com") && password.equals("rohit")) {
+		// H A R D C O D E D   C R E D E N T I A L S   F O R   E M P L O Y E E
+		if (emailId.equals("rohit@onlineshopping.com") && password.equals("rohit")) { 
 			log.info("L O G - I N   S U C C E S S F U L L !");
 			log.info("-------------------------------------\n");
 			int option = 0;
@@ -45,7 +46,7 @@ public class LoginEmployee {
 				}
 				
 				switch(option) {
-				case 1: 
+				case 1: // A D D I N G   A   P R O D U C T
 					try {
 					log.info("Enter Product Name : ");
 					String productName = scanner.nextLine();
@@ -65,19 +66,19 @@ public class LoginEmployee {
 						log.warn(e.getMessage());
 					}
 					break;
-				case 2:
+				case 2: // V I E W   O R D E R S
 					ViewOrders viewOrders = new ViewOrders();
 					viewOrders.viewOrders();
 					break;
-				case 3:
+				case 3: // S E A R C H   C U S T O M E R S
 					SearchCustomers searchCustomers = new SearchCustomers();
 					searchCustomers.searchCustomers();
 					break;
-				case 4:
+				case 4: // L O G - O U T
 					App app = new App();
 					app.startApp();
 					break;
-				case 9:
+				case 9: // E X I T   T H E   A P P
 					log.info("\nT H A N K   Y O U   F O R   V I S I T I N G   O U R   S T O R E !");
 					log.info("-----------------------------------------------------------------\n");
 					scanner.close();
