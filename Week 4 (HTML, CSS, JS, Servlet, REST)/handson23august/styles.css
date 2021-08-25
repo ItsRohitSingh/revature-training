@@ -1,0 +1,134 @@
+.mainlogo {
+    float: left;
+}
+
+body {
+    background-color: whitesmoke;
+}
+
+.navbar {
+    background-color: #00237D;
+    position: relative;
+    left: 20px;
+    margin-top: 0px;
+    padding-bottom: 20px;
+    padding-top: 15px;
+    display: inline-block;
+    padding-left: 140PX;
+    padding-right: 250PX;
+}
+
+.navtext a {
+    color: white;
+    font-family: 'Detente' ;
+    font-size: 30px;
+    text-decoration: none;
+    position: relative;
+    /* margin-left: 35px; */
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.navtext a:hover {
+    background-color: #4f91cd;
+    position: static;
+    padding-bottom: 30px;
+    padding-top: 25px;
+    padding-left: 15px;
+    padding-right: 15px;
+    color: #F9C2BE;
+    margin-left: 00px;
+    margin-right: 00px;
+}
+
+.navtext a:active {
+    color: aliceblue;
+}
+
+.welcome {
+    font-family: 'Cooper Black';
+    font-size: 40px;
+    text-align: center;
+    color: #00237D;
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.CSK,.DC,.KKR,.MI,.PBKS,.RR,.RCB,.SRH {
+    font-size: 35px;
+    font-family: 'Bell MT';
+    /* font-family: 'LittleLordFontleroy'; */
+    font-weight: bold;
+    color: #313131;
+}
+
+.CSK {
+    color: #F9CD05;
+}
+
+.DC {
+    color: #2561AE;
+}
+
+.KKR {
+    color: #3A225D;
+}
+
+.MI {
+    color: #004BA0;
+}
+
+.PBKS {
+    color: #ED1B24;
+}
+
+.RR {
+    color: #ea1985;
+}
+
+.RCB {
+    color: #EC1C24;
+}
+
+.SRH {
+    color: #FF822A;
+}
+
+.username, .password, .teamchoice, .email, .firstname, .lastname {
+    border: 2px solid #00237D;
+    color: #00237D;
+    width: 250px;
+    height: 30px;
+    font-size: 20px;
+    font-family: 'Lucida Calligraphy';
+}
+
+::placeholder {
+    opacity: 1;
+    color: #00237D;
+    text-align: center;
+    font-family: 'Lucida Calligraphy';
+}
+
+.formcontent {
+    color: #00237D;
+    font-size: 35px;
+    font-family: '18thCentury';
+}
+
+.buttons {
+    color: #00237D;
+    border: 2px solid #00237D;
+    background-color: whitesmoke;
+    font-size: 30px;
+    font-family: '18thCentury';
+    margin-top: 20px;
+    margin-right: 20px;
+}
+
+.buttons:hover {
+    background-color: #d3d3d3;
+}

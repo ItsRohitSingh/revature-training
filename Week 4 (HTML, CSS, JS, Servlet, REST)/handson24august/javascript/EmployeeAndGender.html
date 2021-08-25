@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Employee and Gender</title>
+        <script type="module">
+            import {Employee, Gender} from './js/employee.js'; 
+            var gender = new Gender('M', 'Male');
+            var employee = new Employee('ABC', 25, gender, 'Manager', 100000);
+            employee.display(gender);
+        </script>
+    </head>
+</html>
